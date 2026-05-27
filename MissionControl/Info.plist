@@ -35,5 +35,15 @@
     </dict>
     <key>ITSAppUsesNonExemptEncryption</key>
     <false/>
+    <key>CFBundleIcons</key>
+    <dict>
+        <key>CFBundlePrimaryIcon</key>
+        <dict>
+            <key>CFBundleIconFiles</key>
+            <array>
+                <string>AppIcon</string>
+            </array>
+        </dict>
+    </dict>
 </dict>
 </plist>
