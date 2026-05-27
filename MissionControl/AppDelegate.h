@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
