@@ -70,8 +70,21 @@ echo "  Creating .app bundle..."
 cp "$BUILD_DIR/MissionControl" "$APP_DIR/MissionControl"
 cp Info.plist "$APP_DIR/"
 
-# Create a simple AppIcon (just use a solid color, no custom icon needed)
-echo "  Done with .app"
+# Compile asset catalog for app icons
+if [ -d "Assets.xcassets" ]; then
+    echo "  Compiling asset catalog..."
+    ACTOOL=$(xcrun --sdk iphoneos -f actool)
+    "$ACTOOL" \
+        --compile "$APP_DIR" \
+        --minimum-deployment-target "$MIN_IOS" \
+        --platform iphoneos \
+        --target-device iphone \
+        --output-format human-readable-text \
+        Assets.xcassets
+    echo "  Asset catalog compiled"
+else
+    echo "  No Assets.xcassets found, skipping icons"
+fi
 
 cd ..
 
