@@ -12,7 +12,9 @@ static NSString *const MC_URL = @"https://100.126.125.61:3443";
 
     [self createSplashView];
 
+    // Use persistent data store so cookies/localStorage survive app restarts
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    config.websiteDataStore = [WKWebsiteDataStore defaultDataStore];
     config.preferences.javaScriptEnabled = YES;
     config.preferences.javaScriptCanOpenWindowsAutomatically = NO;
 
@@ -149,7 +151,6 @@ static NSString *const MC_URL = @"https://100.126.125.61:3443";
 - (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler {
     SecTrustRef trust = challenge.protectionSpace.serverTrust;
     if (trust && challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust) {
-        // For our specific server, accept the self-signed certificate
         NSString *host = challenge.protectionSpace.host;
         if ([host isEqualToString:@"100.126.125.61"] || [host isEqualToString:@"localhost"] || [host isEqualToString:@"127.0.0.1"]) {
             SecTrustResultType result;
