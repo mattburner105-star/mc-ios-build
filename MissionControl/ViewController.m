@@ -1,6 +1,6 @@
 #import "ViewController.h"
 
-static NSString *const MC_URL = @"http://100.126.125.61:3001";
+static NSString *const MC_URL = @"https://100.126.125.61:3443";
 
 @implementation ViewController
 
